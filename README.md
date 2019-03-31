@@ -29,3 +29,8 @@ Now that we have made our changes, we need to restart the SSH service so that it
 Type this to restart SSH:
 
     systemctl reload sshd
+
+Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file.
+	
+    AllowUsers newuser
+
