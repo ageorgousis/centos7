@@ -1,14 +1,14 @@
 # centos7
 
-This example creates a new user called "demo", but you should replace it with a user name that you like:
+This example creates a new user called "MY_NEW_USER", but you should replace it with a user name that you like:
 
     adduser MY_NEW_USER
 
-Next, assign a password to the new user (again, substitute "demo" with the user that you just created):
+Next, assign a password to the new user (again, substitute "MY_NEW_USER" with the user that you just created):
 
     passwd MY_NEW_USER
 
-As root, run this command to add your new user to the wheel group (substitute the highlighted word with your new user):
+As root, run this command to add your new user to the wheel group (substitute MY_NEW_USER with your new user):
 
     gpasswd -a MY_NEW_USER wheel
 
@@ -25,7 +25,7 @@ and change it to
 
     #PermitRootLogin no
 
-Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file.
+Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file:
 	
     AllowUsers newuser
 
