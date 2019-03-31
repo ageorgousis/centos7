@@ -27,7 +27,7 @@ and change it to
 
 Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file:
 	
-    AllowUsers newuser
+    AllowUsers MY_NEW_USER
 
 Now that we have made our changes, we need to restart the SSH service so that it will use our new configuration.
 Type this to restart SSH:
