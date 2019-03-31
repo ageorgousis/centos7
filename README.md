@@ -25,18 +25,18 @@ and change it to
 
     #PermitRootLogin no
 
-Reload SSH
-
-Now that we have made our changes, we need to restart the SSH service so that it will use our new configuration.
-
-Type this to restart SSH:
-
-    systemctl reload sshd
-
 Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file.
 	
     AllowUsers newuser
 
+Now that we have made our changes, we need to restart the SSH service so that it will use our new configuration.
+Type this to restart SSH:
+
+    systemctl reload sshd
+
+And some tidying
 
     semanage port -a -t ssh_port_t -p tcp MY_NEW_PORT
-
+    systemctl restart sshd
+    firewall-cmd --remove-service ssh --permanent
+    firewall-cmd --reload
