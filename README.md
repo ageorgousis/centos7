@@ -8,7 +8,7 @@ Next, assign a password to the new user (again, substitute "MY_NEW_USER" with th
 
     passwd MY_NEW_USER
 
-As root, run this command to add your new user to the wheel group (substitute MY_NEW_USER with your new user):
+As root, run this command to add your new user to the wheel group (substitute "MY_NEW_USER" with your new user):
 
     gpasswd -a MY_NEW_USER wheel
 
@@ -32,11 +32,14 @@ Allow new user to login via SSH to your server. Simply add this line in the very
 Now that we have made our changes, we need to restart the SSH service so that it will use our new configuration.
 Type this to restart SSH:
 
-    systemctl reload sshd
+    systemctl restart sshd
 
 And some tidying
 
     semanage port -a -t ssh_port_t -p tcp MY_NEW_PORT
-    systemctl restart sshd
+    firewall-cmd --permanent --add-port=MY_NEW_PORT/tcp
     firewall-cmd --remove-service ssh --permanent
     firewall-cmd --reload
+
+
+    hostnamectl set-hostname your-new-hostname
