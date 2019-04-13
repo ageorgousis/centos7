@@ -23,23 +23,29 @@ To disable remote root logins, we need to find the line that looks like this
 
 and change it to
 
-    #PermitRootLogin no
+    PermitRootLogin no
 
 Allow new user to login via SSH to your server. Simply add this line in the very bottom of that file:
 	
     AllowUsers MY_NEW_USER
 
+Install utilites to manage Selinux
+
+    yum install policycoreutils-python
+
+If you want to change the port on a SELinux system, you have to tell SELinux about this change.
+
+    semanage port -a -t ssh_port_t -p tcp MY_NEW_PORT
+
+Configure the firewall with the changes
+
+    firewall-cmd --permanent --add-port=MY_NEW_PORT/tcp
+    firewall-cmd --remove-service ssh --permanent
+    firewall-cmd --reload
+    
 Now that we have made our changes, we need to restart the SSH service so that it will use our new configuration.
 Type this to restart SSH:
 
     systemctl restart sshd
-
-And some tidying
-
-    semanage port -a -t ssh_port_t -p tcp MY_NEW_PORT
-    firewall-cmd --permanent --add-port=MY_NEW_PORT/tcp
-    firewall-cmd --remove-service ssh --permanent
-    firewall-cmd --reload
-
 
     hostnamectl set-hostname your-new-hostname
