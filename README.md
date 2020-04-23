@@ -1,4 +1,7 @@
-# centos7
+# Centos 7
+
+### Initial steps for setting Centos 7
+
 
 This example creates a new user called "MY_NEW_USER", but you should replace it with a user name that you like:
 
